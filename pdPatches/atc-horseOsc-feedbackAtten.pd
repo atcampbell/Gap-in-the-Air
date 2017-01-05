@@ -1,0 +1,50 @@
+#N canvas 30 77 981 718 10;
+#X obj 22 32 block~ 1;
+#X obj 261 28 inlet~ Dspeed;
+#X obj 350 28 inlet~ upLim;
+#X obj 434 28 inlet~ downLim;
+#X obj 135 31 inlet~ Uspeed;
+#X obj 193 257 expr~ if($v1 <= $v2 \, 2 \, 0);
+#X obj 26 257 expr~ if($v1 >= $v2 \, 1 \, 0);
+#X obj 27 320 fexpr~ if($x1 !=1 && $x2 != 2 \, $y1 \, $x1);
+#X obj 26 169 fexpr~ if($x1 == 1 \, $y1 + $x2 \, if($x1 == 2 \, $y1
++ $x3 \, 0));
+#X obj 26 384 +~ 1;
+#X obj 26 443 delwrite~ \$0-sampDelay 0.226757;
+#X obj 26 82 delread~ \$0-sampDelay 0.226757;
+#X obj 535 28 inlet~ prevFback;
+#X obj 658 28 inlet~ oscDelay;
+#X obj 659 61 *~;
+#X obj 264 665 outlet~ audioOut;
+#X obj 485 633 *~;
+#X obj 860 26 inlet~ fbOut;
+#X obj 769 26 inlet~ fbIn;
+#X obj 376 665 outlet~ fbTpPrev;
+#X obj 486 665 outlet~ fbToNext;
+#X obj 265 628 hip~ 1;
+#X text 283 367 Fourse oscillator. Original hardware version by Peter
+Blasser. Based on Blasser's documentation (http://www. ciat-lonbarde.net/fyrall/paperz/fourses/index.html)
+and a Max/MSP implementation created by users of the Cycling 64 forum
+(http://cycling74. com/forums/topic/recreating-a-horsefourses-oscillator/)
+;
+#X connect 1 0 8 2;
+#X connect 2 0 6 1;
+#X connect 3 0 5 1;
+#X connect 4 0 8 1;
+#X connect 5 0 7 1;
+#X connect 6 0 7 0;
+#X connect 7 0 9 0;
+#X connect 8 0 6 0;
+#X connect 8 0 5 0;
+#X connect 8 0 21 0;
+#X connect 9 0 10 0;
+#X connect 9 0 16 0;
+#X connect 9 0 19 0;
+#X connect 11 0 8 0;
+#X connect 12 0 5 1;
+#X connect 13 0 14 0;
+#X connect 14 0 6 1;
+#X connect 16 0 20 0;
+#X connect 17 0 16 1;
+#X connect 18 0 14 1;
+#X connect 21 0 15 0;
